@@ -1,0 +1,159 @@
+.customer-login {
+  background-color: #eaedf2;
+  height: calc(100vh);
+
+  .login-content {
+    padding-top: 80px;
+    width: 50%;
+    height: 50%;
+
+    @media (max-width: 1024px) {
+      width: 90%;
+    }
+
+    @include md-min {
+      width: 100%;
+      padding-top: 0;
+    }
+
+    .login {
+      display: flex;
+
+      @include md-min {
+        flex-direction: column;
+      }
+    }
+
+    .title {
+      background-color: $primary;
+
+      h2 {
+        color: #ffffff;
+        font-size: 40px;
+        line-height: 60px;
+        padding: 10px 20px;
+      }
+    }
+
+    .customer {
+      padding: 60px;
+      width: 65%;
+      position: relative;
+
+      .icon {
+        position: absolute;
+        font-size: 20px;
+        top: 50%;
+        right: -5px;
+      }
+
+      @include md-min {
+        width: 100%;
+      }
+
+      input {
+        height: 70px;
+        font-size: 20px;
+      }
+
+      button {
+        height: 70px;
+        font-size: 20px;
+      }
+    }
+
+    .separate {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      @include md-min {
+        display: none;
+      }
+
+      &:before {
+        display: block;
+        content: "";
+        background-color: #ededed;
+        width: 3px;
+        height: 50%;
+      }
+
+      &:after {
+        display: block;
+        content: "";
+        background-color: #ededed;
+        width: 3px;
+        height: 50%;
+      }
+
+      i {
+        font-size: 24px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #323a45;
+      }
+    }
+
+    .socialmedia-login {
+      padding: 60px;
+      width: 35%;
+
+      @include md-min {
+        width: 100%;
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+
+      .fb-button {
+        height: 70px;
+        background-color: #4267b2;
+        border-color: #4267b2;
+        font-size: 20px;
+
+        &:hover {
+          background-color: #1877f2;
+          border-color: #1877f2;
+        }
+      }
+
+      .google-button {
+        height: 70px;
+        background-color: #ed6255;
+        border-color: #ed6255;
+        font-size: 20px;
+
+        &:hover {
+          background-color: #f34636;
+          border-color: #f34636;
+        }
+      }
+
+      .register-button {
+        height: 70px;
+        background-color: #1bbc9b;
+        border-color: #1bbc9b;
+        font-size: 20px;
+
+        &:hover {
+          background-color: #1dceaa;
+          border-color: #1dceaa;
+        }
+      }
+    }
+  }
+
+  .hidden-word {
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 10px;
+      top: 60%;
+      color: #000000;
+    }
+  }
+}

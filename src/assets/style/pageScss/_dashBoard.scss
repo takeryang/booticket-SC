@@ -1,0 +1,59 @@
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 72px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+
+  @include md-min {
+    height: auto;
+  }
+}
+
+.sidebar .nav-link.active {
+  color: $primary;
+}
+
+.nav-link {
+  color: #333333;
+
+  i {
+    width: 20px;
+    text-align: center;
+  }
+}
+
+.h-all {
+  height: calc(100vh - 30vh);
+  overflow-x: auto;
+  white-space: nowrap;
+  @include md-min {
+    height: auto;
+  }
+}
+
+.collapse-animation-start {
+  i {
+    transition: 0.3s;
+    transform: rotate(180deg);
+  }
+}
+
+.collapse-animation-end {
+  i {
+    transition: 0.3s;
+  }
+}
+
+.order-list {
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+
+  li {
+    border-bottom: 1px solid #b2afcc;
+    margin-bottom: 4px;
+  }
+}

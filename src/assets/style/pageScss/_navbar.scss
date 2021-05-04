@@ -1,0 +1,24 @@
+.back-nav {
+  a {
+    @include md-min {
+      width: 50%;
+    }
+  }
+  button {
+    margin-left: 12px;
+    width: 10%;
+
+    @include md-min {
+      width: 20%;
+      margin-right: 12px;
+    }
+  }
+
+  input {
+    @include md-min {
+      margin-left: 12px;
+      margin-right: 12px;
+      margin-top: 8px;
+    }
+  }
+}

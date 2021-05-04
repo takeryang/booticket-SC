@@ -1,0 +1,38 @@
+.history-order {
+  h2 {
+    border-bottom: 5px solid $primary;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+  }
+
+  .table {
+    overflow-x: auto;
+    thead th {
+      border-top: 0px;
+    }
+
+    td {
+      vertical-align: middle;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        border-bottom: 1px solid #b2afcc;
+        margin-bottom: 4px;
+      }
+    }
+
+    i {
+      font-size: 24px;
+      color: #339af0;
+    }
+  }
+
+  .table-responsive {
+    white-space: nowrap;
+  }
+}
