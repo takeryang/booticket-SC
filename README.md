@@ -7,8 +7,6 @@ https://takeryang.github.io/booticket/#/
 
 前台
 
-需註冊會員才能結帳
-
 會員帳號:
 1.提供註冊新帳號
 2.提供FB帳號,Google帳號登入
