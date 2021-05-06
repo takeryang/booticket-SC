@@ -5,8 +5,8 @@
 
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item" :class="{'active': index === 0}" v-for="(product,index) of carouselShow"
-          :key="product.id" v-if="product.is_enabled === 1">
+        <div class="carousel-item" :class="{'active': index === 0}" v-for="(product,index) of carouselShowAry"
+          :key="product.id">
           <img :src="product.imageUrl" class="d-block w-100" alt="...">
           <div class="carousel-caption text-left px-2">
             <h2 class="font-weight-bold mb-2">{{product.title}}</h2>
@@ -34,7 +34,7 @@
         熱門節目
       </h2>
       <div class="row">
-        <div class="col-12 d-flex mb-5 lg-config" v-for="product of hotShow" :key="product.id"
+        <div class="col-12 d-flex mb-5 lg-config" v-for="product of hotShowAry" :key="product.id"
           v-if="product.is_enabled === 1" data-aos="zoom-in-up">
           <div class="product-img"><img :src="product.imageUrl" alt="" class="img-fluid">
           </div>
@@ -76,7 +76,7 @@
     <div class="container more-show">
       <h2 class="font-weight-bold">更多節目</h2>
       <div class="row">
-        <div class="col-lg-6 mb-3" v-for="product of moreShow" data-aos="fade-up">
+        <div class="col-lg-6 mb-3" v-for="product of moreShowAry" data-aos="fade-up">
           <div class="card">
             <div class="product-img">
               <a href="" @click.prevent="getProductDetail(product.id)">
@@ -182,6 +182,9 @@
         modalUrl: '',
         aletMsg: '輸入優惠碼 NEWOPEN 即享全站商品9折優惠',
         displayStsates: 'none',
+        moreShowAry: [],
+        carouselShowAry: [],
+        hotShowAry: [],
 
       }
     },
@@ -194,6 +197,9 @@
           // console.log(response.data);
           this.products = response.data.products;
           this.isLoading = false;
+          this.carouselShow();
+          this.moreShow();
+          this.hotShow();
         });
       },
 
@@ -253,45 +259,18 @@
         }
       },
 
-      alertDia() {
-        this.displayStsates = 'block'
-        window.setTimeout(() => {
-          this.displayStsates = 'none'
-        }, 3000)
-      },
-
-      // getRandomArrayElements(arr, count) {
-      //   if (arr.length > 0) {
-      //     let shuffled = arr.slice(0),
-      //       i = arr.length,
-      //       min = i - count,
-      //       temp, index;
-      //     while (i-- > min) {
-      //       index = Math.floor((i + 1) * Math.random());
-      //       temp = shuffled[index];
-      //       shuffled[index] = shuffled[i];
-      //       shuffled[i] = temp;
-      //     }
-      //     return shuffled.slice(min);
-      //   }
-      // },
-    },
-
-    computed: {
       moreShow() {
+        function getRandom(x) {
+          return Math.floor(Math.random() * x);
+        }
+        let n = 0;
+        const tempary = [];
         if (this.products.length > 0) {
-          function getRandom(x) {
-            return Math.floor(Math.random() * x);
-          }
-          let moreShowAry = [];
-          let n = 0;
-          const tempary = [];
           n = getRandom(this.products.length);
           for (let i = 0; i < 6; i += 1) {
             n = getRandom(this.products.length);
             tempary.push(n);
           }
-          // eslint-disable-next-line
           const result = tempary.filter((item, index, ary) => {
             return ary.indexOf(item) === index;
           });
@@ -303,38 +282,25 @@
                 result.push(addnum);
               }
             }
-            // if (result[0] !== addnum || result[1] !== addnum || result[2] !== addnum || result[3] !== addnum || result[4] !== addnum) {
-            //   result.push(addnum);
-            // }
           }
-
           for (let i = 0; i < 6; i++) {
-            moreShowAry.push(this.products[result[i]])
+            this.moreShowAry.push(this.products[result[i]])
           }
-          // moreShowAry = [this.products[result[0]],
-          // this.products[result[1]],
-          // this.products[result[2]],
-          // this.products[result[3]],
-          // this.products[result[4]],
-          // this.products[result[5]]];
-          return moreShowAry;
         }
       },
 
       carouselShow() {
+        function getRandom(x) {
+          return Math.floor(Math.random() * x);
+        }
+        let n = 0;
+        const tempary = [];
         if (this.products.length > 0) {
-          function getRandom(x) {
-            return Math.floor(Math.random() * x);
-          }
-          let carouselShowAry = [];
-          let n = 0;
-          const tempary = [];
           n = getRandom(this.products.length);
           for (let i = 0; i < 3; i += 1) {
             n = getRandom(this.products.length);
             tempary.push(n);
           }
-          // eslint-disable-next-line
           const result = tempary.filter((item, index, ary) => {
             return ary.indexOf(item) === index;
           });
@@ -346,26 +312,23 @@
               result.push(addnum);
             }
           }
-          carouselShowAry = [this.products[result[0]],
+          this.carouselShowAry = [this.products[result[0]],
           this.products[result[1]],
           this.products[result[2]]];
-          return carouselShowAry;
         }
       },
 
       hotShow() {
+        function getRandom(x) {
+          return Math.floor(Math.random() * x);
+        }
+        let n = 0;
+        const tempary = [];
         if (this.products.length > 0) {
-          function getRandom(x) {
-            return Math.floor(Math.random() * x);
-          }
-          let hotShowAry = [];
-          let n = 0;
-          const tempary = [];
           for (let i = 0; i < 4; i += 1) {
             n = getRandom(this.products.length);
             tempary.push(n);
           }
-          // eslint-disable-next-line
           const result = tempary.filter((item, index, ary) => {
             return ary.indexOf(item) === index;
           });
@@ -377,21 +340,137 @@
                 result.push(addnum);
               }
             }
-            // if (result[0] !== addnum || result[1] !== addnum || result[2] !== addnum) {
-            //   result.push(addnum);
-            // }
           }
           for (let i = 0; i < 4; i++) {
-            hotShowAry.push(this.products[result[i]])
+            this.hotShowAry.push(this.products[result[i]])
           }
-          // hotShowAry = [this.products[result[0]],
-          // this.products[result[1]],
-          // this.products[result[2]],
-          // this.products[result[3]]];
-          return hotShowAry;
         }
       },
+
+      alertDia() {
+        this.displayStsates = 'block'
+        window.setTimeout(() => {
+          this.displayStsates = 'none'
+        }, 2500)
+      },
     },
+
+    // computed: {
+
+    //   moreShow() {
+    //     if (this.products.length > 0) {
+    //       function getRandom(x) {
+    //         return Math.floor(Math.random() * x);
+    //       }
+    //       let moreShowAry = [];
+    //       let n = 0;
+    //       const tempary = [];
+    //       n = getRandom(this.products.length);
+    //       for (let i = 0; i < 6; i += 1) {
+    //         n = getRandom(this.products.length);
+    //         tempary.push(n);
+    //       }
+    //       // eslint-disable-next-line
+    //       const result = tempary.filter((item, index, ary) => {
+    //         return ary.indexOf(item) === index;
+    //       });
+    //       if (result.length < 6) {
+    //         const num = result[4];
+    //         const addnum = num + 1;
+    //         for (let i = 0; i < 6; i++) {
+    //           if (result[i] !== addnum) {
+    //             result.push(addnum);
+    //           }
+    //         }
+    //         // if (result[0] !== addnum || result[1] !== addnum || result[2] !== addnum || result[3] !== addnum || result[4] !== addnum) {
+    //         //   result.push(addnum);
+    //         // }
+    //       }
+
+    //       for (let i = 0; i < 6; i++) {
+    //         moreShowAry.push(this.products[result[i]])
+    //       }
+    //       // moreShowAry = [this.products[result[0]],
+    //       // this.products[result[1]],
+    //       // this.products[result[2]],
+    //       // this.products[result[3]],
+    //       // this.products[result[4]],
+    //       // this.products[result[5]]];
+    //       return moreShowAry;
+    //     }
+    //   },
+
+    //   carouselShow() {
+    //     if (this.products.length > 0) {
+    //       function getRandom(x) {
+    //         return Math.floor(Math.random() * x);
+    //       }
+    //       let carouselShowAry = [];
+    //       let n = 0;
+    //       const tempary = [];
+    //       n = getRandom(this.products.length);
+    //       for (let i = 0; i < 3; i += 1) {
+    //         n = getRandom(this.products.length);
+    //         tempary.push(n);
+    //       }
+    //       // eslint-disable-next-line
+    //       const result = tempary.filter((item, index, ary) => {
+    //         return ary.indexOf(item) === index;
+    //       });
+    //       if (result.length < 3) {
+    //         const num = result[1];
+    //         const addnum = num + 1;
+
+    //         if (result[0] !== addnum || result[1] !== addnum) {
+    //           result.push(addnum);
+    //         }
+    //       }
+    //       carouselShowAry = [this.products[result[0]],
+    //       this.products[result[1]],
+    //       this.products[result[2]]];
+    //       return carouselShowAry;
+    //     }
+    //   },
+
+    //   hotShow() {
+    //     if (this.products.length > 0) {
+    //       function getRandom(x) {
+    //         return Math.floor(Math.random() * x);
+    //       }
+    //       let hotShowAry = [];
+    //       let n = 0;
+    //       const tempary = [];
+    //       for (let i = 0; i < 4; i += 1) {
+    //         n = getRandom(this.products.length);
+    //         tempary.push(n);
+    //       }
+    //       // eslint-disable-next-line
+    //       const result = tempary.filter((item, index, ary) => {
+    //         return ary.indexOf(item) === index;
+    //       });
+    //       if (result.length < 4) {
+    //         const num = result[2];
+    //         const addnum = num + 1;
+    //         for (let i = 0; i < 4; i++) {
+    //           if (result[i] !== addnum) {
+    //             result.push(addnum);
+    //           }
+    //         }
+    //         // if (result[0] !== addnum || result[1] !== addnum || result[2] !== addnum) {
+    //         //   result.push(addnum);
+    //         // }
+    //       }
+    //       for (let i = 0; i < 4; i++) {
+    //         hotShowAry.push(this.products[result[i]])
+    //       }
+    //       // hotShowAry = [this.products[result[0]],
+    //       // this.products[result[1]],
+    //       // this.products[result[2]],
+    //       // this.products[result[3]]];
+    //       return hotShowAry;
+    //     }
+    //   },
+    // },
 
 
 

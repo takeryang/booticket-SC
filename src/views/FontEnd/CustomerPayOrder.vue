@@ -62,7 +62,7 @@
                 <div class="form-group">
                   <label for="useremail" class="mb-1">Email</label>
                   <input type="email" class="form-control" :class="classes" name="email" id="useremail"
-                    v-model="form.user.email" placeholder="請輸入 Email" disabled>
+                    v-model="form.user.email" placeholder="請輸入 Email">
                   <span class="invalid-feedback m-0">{{ errors[0] }}</span>
                 </div>
               </validation-provider>

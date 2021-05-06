@@ -7,7 +7,7 @@
             <a href="" class="text-light p-3"><i class="fab fa-instagram"></i></a>
             <a href="" class="text-light p-3"><i class="fab fa-facebook-square"></i></a>
             <a href="" class="text-light p-3"><i class="fab fa-line"></i></a>
-            <a href="" class="text-light p-3"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/takeryang/booticket-SC" class="text-light p-3"><i class="fab fa-github"></i></a>
           </div>
           <div class="col-md-6 text-right userlink d-flex justify-content-around justify-content-md-end">
             <router-link class="text-light p-2" to="/customer_login" v-if="userEmail === null"><i
@@ -83,8 +83,8 @@
           </ul>
         </div>
         <div class="cart">
-          <a href="" @click.prevent="loginCheck"><i class="fas fa-shopping-cart mr-1"></i>購物車({{cartsLen}})
-          </a>
+          <router-link to="/customer_order"><i class="fas fa-shopping-cart mr-1"></i>購物車({{cartsLen}})
+          </router-link>
         </div>
       </nav>
     </div>
@@ -145,20 +145,20 @@
         }
       },
 
-      currentUser() {
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            // console.log("userEmail", user.email)
-            // console.log(user)
-            this.userEmail = user.email.split('@')[0];
-            // console.log(this.userEmail)
-            // User is signed in.
-          } else {
-            // No user is signed in.
-            console.log(3)
-          }
-        });
-      },
+      // currentUser() {
+      //   firebase.auth().onAuthStateChanged((user) => {
+      //     if (user) {
+      //       // console.log("userEmail", user.email)
+      //       // console.log(user)
+      //       this.userEmail = user.email.split('@')[0];
+      //       // console.log(this.userEmail)
+      //       // User is signed in.
+      //     } else {
+      //       // No user is signed in.
+      //       console.log(3)
+      //     }
+      //   });
+      // },
 
       // online() {
       //   var user = firebase.auth().currentUser;
@@ -174,7 +174,7 @@
     },
 
     created() {
-      this.currentUser()
+      // this.currentUser()
       // this.online()
     },
 

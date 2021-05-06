@@ -93,25 +93,25 @@ const routes = [
     path: '/customer_checkout/:orderId',
     name: 'CustomerCheckout',
     component: ()=>import('../views/FontEnd/CustomerCheckout.vue'),
-    meta: { customerLogin: true },
+    // meta: { customerLogin: true },
   },
   {
     path: '/customer_order',
     name: 'CustomerOrder',
     component: ()=>import('../views/FontEnd/CustomerPayOrder.vue'),
-    meta: { customerLogin: true },
+    // meta: { customerLogin: true },
   },
   {
     path:'/customer_code',
     name:'CustomerCode',
     component:()=>import('../views/FontEnd/CustomerCode.vue'),
-    meta: { customerLogin: true },
+    // meta: { customerLogin: true },
   },
   {
     path:'/history_order',
     name:'HistoryOrder',
     component:()=>import('../views/FontEnd/HistoryOrder.vue'),
-    meta: { customerLogin: true },
+    // meta: { customerLogin: true },
   },
 ]
 

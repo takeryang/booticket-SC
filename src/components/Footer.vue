@@ -21,7 +21,7 @@
     <div class="bg-primary information">
       <div class="container d-flex align-items-center justify-content-center">
         <h1 class="mr-3">boo 售票網</h1>
-        <p class="m-0">© 2021 作品練習</p>
+        <p class="m-0">© 2021 作品練習 無商業用途</p>
         <a href="" class="ml-auto mr-3">隱私權政策</a>
         <a href="">服務條款</a>
       </div>
