@@ -34,8 +34,7 @@
         熱門節目
       </h2>
       <div class="row">
-        <div class="col-12 d-flex mb-5 lg-config" v-for="product of hotShowAry" :key="product.id"
-          v-if="product.is_enabled === 1" data-aos="zoom-in-up">
+        <div class="col-12 d-flex mb-5 lg-config" v-for="product of hotShowAry" :key="product.id" data-aos="zoom-in-up">
           <div class="product-img"><img :src="product.imageUrl" alt="" class="img-fluid">
           </div>
           <div class="d-flex product">
@@ -194,12 +193,14 @@
         const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
         this.isLoading = true;
         this.$http.get(api).then((response) => {
-          // console.log(response.data);
+          console.log(response.data);
           this.products = response.data.products;
           this.isLoading = false;
-          this.carouselShow();
-          this.moreShow();
-          this.hotShow();
+          if (response.data) {
+            this.carouselShow();
+            this.moreShow();
+            this.hotShow();
+          }
         });
       },
 
