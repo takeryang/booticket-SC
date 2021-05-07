@@ -11,7 +11,7 @@
           :class="{'active': pagination.current_page == page}"><a class="page-link" href="#"
             @click.prevent="getProducts(page)">{{page}}</a></li>
         <li class="page-item" :class="{'disabled': !pagination.has_next}">
-          <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page+1)">
+          <a class="page-link" href="#" aria-label="Next" @click.prevent="getProducts(pagination.current_page + 1)">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
