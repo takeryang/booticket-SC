@@ -193,7 +193,7 @@
         const api = `${process.env.VUE_APP_APIPATH}api/${process.env.VUE_APP_CUSTOMPATH}/products/all`;
         this.isLoading = true;
         this.$http.get(api).then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.products = response.data.products;
           this.isLoading = false;
           if (response.data) {
@@ -264,29 +264,18 @@
         function getRandom(x) {
           return Math.floor(Math.random() * x);
         }
-        let n = 0;
-        const tempary = [];
+        const result = [];
         if (this.products.length > 0) {
-          n = getRandom(this.products.length);
-          for (let i = 0; i < 6; i += 1) {
-            n = getRandom(this.products.length);
-            tempary.push(n);
-          }
-          const result = tempary.filter((item, index, ary) => {
-            return ary.indexOf(item) === index;
-          });
-          if (result.length < 6) {
-            const num = result[4];
-            const addnum = num + 1;
-            for (let i = 0; i < 6; i++) {
-              if (result[i] !== addnum) {
-                result.push(addnum);
-              }
+          while (result.length < 6) {
+            let num = getRandom(this.products.length)
+            if (result.indexOf(num) === -1) {
+              result.push(num)
             }
+            // console.log(result)
           }
-          for (let i = 0; i < 6; i++) {
-            this.moreShowAry.push(this.products[result[i]])
-          }
+          result.forEach((item) => {
+            this.moreShowAry.push(this.products[item])
+          })
         }
       },
 
@@ -294,28 +283,18 @@
         function getRandom(x) {
           return Math.floor(Math.random() * x);
         }
-        let n = 0;
-        const tempary = [];
+        const result = [];
         if (this.products.length > 0) {
-          n = getRandom(this.products.length);
-          for (let i = 0; i < 3; i += 1) {
-            n = getRandom(this.products.length);
-            tempary.push(n);
-          }
-          const result = tempary.filter((item, index, ary) => {
-            return ary.indexOf(item) === index;
-          });
-          if (result.length < 3) {
-            const num = result[1];
-            const addnum = num + 1;
-
-            if (result[0] !== addnum || result[1] !== addnum) {
-              result.push(addnum);
+          while (result.length < 4) {
+            let num = getRandom(this.products.length)
+            if (result.indexOf(num) === -1) {
+              result.push(num)
             }
+            // console.log(result)
           }
-          this.carouselShowAry = [this.products[result[0]],
-          this.products[result[1]],
-          this.products[result[2]]];
+          result.forEach((item) => {
+            this.carouselShowAry.push(this.products[item])
+          })
         }
       },
 
@@ -323,30 +302,108 @@
         function getRandom(x) {
           return Math.floor(Math.random() * x);
         }
-        let n = 0;
-        const tempary = [];
+        const result = []
         if (this.products.length > 0) {
-          for (let i = 0; i < 4; i += 1) {
-            n = getRandom(this.products.length);
-            tempary.push(n);
-          }
-          const result = tempary.filter((item, index, ary) => {
-            return ary.indexOf(item) === index;
-          });
-          if (result.length < 4) {
-            const num = result[2];
-            const addnum = num + 1;
-            for (let i = 0; i < 4; i++) {
-              if (result[i] !== addnum) {
-                result.push(addnum);
-              }
+          while (result.length < 4) {
+            let num = getRandom(this.products.length)
+            if (result.indexOf(num) === -1) {
+              result.push(num)
             }
+            // console.log(result)
           }
-          for (let i = 0; i < 4; i++) {
-            this.hotShowAry.push(this.products[result[i]])
-          }
+          result.forEach((item) => {
+            this.hotShowAry.push(this.products[item])
+          })
         }
       },
+
+      // moreShow() {
+      //   function getRandom(x) {
+      //     return Math.floor(Math.random() * x);
+      //   }
+      //   let n = 0;
+      //   const tempary = [];
+      //   if (this.products.length > 0) {
+      //     n = getRandom(this.products.length);
+      //     for (let i = 0; i < 6; i += 1) {
+      //       n = getRandom(this.products.length);
+      //       tempary.push(n);
+      //     }
+      //     const result = tempary.filter((item, index, ary) => {
+      //       return ary.indexOf(item) === index;
+      //     });
+      //     if (result.length < 6) {
+      //       const num = result[4];
+      //       const addnum = num + 1;
+      //       for (let i = 0; i < 6; i++) {
+      //         if (result[i] !== addnum) {
+      //           result.push(addnum);
+      //         }
+      //       }
+      //     }
+      //     for (let i = 0; i < 6; i++) {
+      //       this.moreShowAry.push(this.products[result[i]])
+      //     }
+      //   }
+      // },
+
+      // carouselShow() {
+      //   function getRandom(x) {
+      //     return Math.floor(Math.random() * x);
+      //   }
+      //   let n = 0;
+      //   const tempary = [];
+      //   if (this.products.length > 0) {
+      //     n = getRandom(this.products.length);
+      //     for (let i = 0; i < 3; i += 1) {
+      //       n = getRandom(this.products.length);
+      //       tempary.push(n);
+      //     }
+      //     const result = tempary.filter((item, index, ary) => {
+      //       return ary.indexOf(item) === index;
+      //     });
+      //     if (result.length < 3) {
+      //       const num = result[1];
+      //       const addnum = num + 1;
+
+      //       if (result[0] !== addnum || result[1] !== addnum) {
+      //         result.push(addnum);
+      //       }
+      //     }
+      //     this.carouselShowAry = [this.products[result[0]],
+      //     this.products[result[1]],
+      //     this.products[result[2]]];
+      //   }
+      // },
+
+      // hotShow() {
+      //   function getRandom(x) {
+      //     return Math.floor(Math.random() * x);
+      //   }
+      //   let n = 0;
+      //   const tempary = [];
+      //   if (this.products.length > 0) {
+      //     for (let i = 0; i < 4; i += 1) {
+      //       n = getRandom(this.products.length);
+      //       tempary.push(n);
+      //     }
+      //     const result = tempary.filter((item, index, ary) => {
+      //       return ary.indexOf(item) === index;
+      //     });
+      //     if (result.length < 4) {
+      //       const num = result[2];
+      //       const addnum = num + 1;
+      //       for (let i = 0; i < 4; i++) {
+      //         if (result[i] !== addnum) {
+      //           result.push(addnum);
+      //         }
+      //       }
+      //     }
+      //     for (let i = 0; i < 4; i++) {
+      //       this.hotShowAry.push(this.products[result[i]])
+      //     }
+      //   }
+      // },
 
       alertDia() {
         this.displayStsates = 'block'
