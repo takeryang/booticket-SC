@@ -115,9 +115,12 @@
         // [START auth_sign_out]
         firebase.auth().signOut().then(() => {
           // Sign-out successful.
-          console.log('success')
-          window.location.reload();
-          // this.$router.push('/')
+          // console.log('success')
+          if (this.$route.path !== '/') {
+            this.$router.push('/')
+          } else {
+            window.location.reload();
+          }
         }).catch((error) => {
           // An error happened.
         });
@@ -145,20 +148,20 @@
         }
       },
 
-      // currentUser() {
-      //   firebase.auth().onAuthStateChanged((user) => {
-      //     if (user) {
-      //       // console.log("userEmail", user.email)
-      //       // console.log(user)
-      //       this.userEmail = user.email.split('@')[0];
-      //       // console.log(this.userEmail)
-      //       // User is signed in.
-      //     } else {
-      //       // No user is signed in.
-      //       console.log(3)
-      //     }
-      //   });
-      // },
+      currentUser() {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            // console.log("userEmail", user.email)
+            // console.log(user)
+            this.userEmail = user.email.split('@')[0];
+            // console.log(this.userEmail)
+            // User is signed in.
+          } else {
+            // No user is signed in.
+            // console.log(3)
+          }
+        });
+      },
 
       // online() {
       //   var user = firebase.auth().currentUser;
@@ -174,7 +177,7 @@
     },
 
     created() {
-      // this.currentUser()
+      this.currentUser()
       // this.online()
     },
 
